@@ -62,11 +62,16 @@ async function registerUserController(req, res) {
  * @access Public
 */
 async function loginUserController(req,res){
-    const {email,password}=req.body;
-    const user = await userModel.findOne({email});
-    if(!email || !password){
+    const { email, password } = req.body;
+    // console.log("loginUserController",email,password)
+    
+     if(!email || !password){
         return res.status(400).json({message:'Please provide email and password'})
-    }
+     }
+    
+    const user = await userModel.findOne({ email });
+    
+   
     if(!user){
         return res.status(404).json({message:'User not found'})
     }
