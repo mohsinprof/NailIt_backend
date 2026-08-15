@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require('mongoose');
 
 /**
  * - job description schema :string
@@ -100,7 +100,12 @@ const interviewReportSchema = new mongoose.Schema({
     },
     selfDescription: {
         type: String,
+        required: true
     },
+    scoreReasoning: {
+     type: String,  
+     required: true
+   },
     matchScore: {
         type: Number,
         max: 100,
@@ -109,11 +114,15 @@ const interviewReportSchema = new mongoose.Schema({
     technicalQuestions: [technicalQuestionSchema],
     behavioralQuestions: [behavioralQuestionSchema],
     skillGaps: [skillGapSchema],
-    preparationPlan: [preparationPlanSchema]
+    preparationPlan: [preparationPlanSchema],
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    }
 }, { timestamps: true })
 
 
 
-const InterviewReportModel = mongoose.model("InterviewReport", interviewReportSchema);
+const interviewReportModel = mongoose.model("InterviewReport", interviewReportSchema);
 
-module.exports = InterviewReportModel;
+module.exports = interviewReportModel;

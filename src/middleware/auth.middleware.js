@@ -20,6 +20,7 @@ async function authuser(req, res, next) {
         next();
 
     } catch (err) {
+        console.log(token)
         return res.status(401).json({message:"Unauthorized access or session expired"})
     } 
     
