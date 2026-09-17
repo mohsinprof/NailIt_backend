@@ -90,6 +90,8 @@ const preparationPlanSchema = new mongoose.Schema({
 
 
 
+
+
 const interviewReportSchema = new mongoose.Schema({
     jobDescription: {
         type: String,
@@ -97,23 +99,18 @@ const interviewReportSchema = new mongoose.Schema({
     },
     resume: {
         type: String,
+        required: false
     },
     selfDescription: {
         type: String,
-        required: true
+        required: false
     },
-    scoreReasoning: {
-     type: String,  
-     required: true
-   },
-    matchScore: {
-        type: Number,
-        max: 100,
-        min: 0
-    },
+    title: { type: String, default: "Interview Report" },          // ADD
+    matchScore: { type: Number, min: 0, max: 100 },                // ADD
+    scoreReasoning: { type: String },  
     technicalQuestions: [technicalQuestionSchema],
     behavioralQuestions: [behavioralQuestionSchema],
-    skillGaps: [skillGapSchema],
+    skillsGaps: [skillGapSchema],
     preparationPlan: [preparationPlanSchema],
     user: {
         type: mongoose.Schema.Types.ObjectId,

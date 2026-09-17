@@ -1,5 +1,6 @@
-require('dotenv').config()
+require('dotenv').config();
 const { GoogleGenAI } = require("@google/genai");
+const fs = require('fs'); // Added fs for the PDF generation
 
 // FIX 1: Initialize with 'apiKey'
 const ai = new GoogleGenAI({ apiKey: process.env.GOOGLE_GENAI_API_KEY });
@@ -9,12 +10,12 @@ const generateInterviewReportSchema = {
   type: "object",
   properties: {
     scoreReasoning: {
-      type: "string",
+      type: "String",
       description: "Step-by-step reasoning explaining exactly why the candidate is receiving the matchScore. Compare their years of experience and specific skills directly to the job description."
     },
     matchScore: {
       type: "number",
-      description: "The match score between the candidate and the job description"
+      description: "The match score between the candidate and the job description.(if user input feild is gebrish then give them 0 score)"
     },
     technicalQuestions: {
       type: "array",
@@ -67,9 +68,17 @@ const generateInterviewReportSchema = {
       },
       description: "The preparation plan for the candidate to improve their skills and prepare for the interview"
     }
+    , title: {
+    type: "String",
+    description: "The title of the interview report on which candidate is being evaluated. and add name of candidate to it. it will default to 'interview report for <candidate name>' if not provided"
+  }
+     
+
+
+    
   },
-  required: ["scoreReasoning", "matchScore", "technicalQuestions", "behavioralQuestions", "skillsGaps", "preparationPlan"]
-};
+  required: ["title", "scoreReasoning", "matchScore", "technicalQuestions", "behavioralQuestions", "skillsGaps", "preparationPlan"]
+}
 
 async function generateInterviewReport(arg1, arg2, arg3) {
     
@@ -97,15 +106,15 @@ async function generateInterviewReport(arg1, arg2, arg3) {
 You are an Expert AI Technical Recruiter. You must evaluate a candidate's fit for the specific job description provided below. 
 
 <candidate_resume>
-${resume}
+ ${resume}
 </candidate_resume>
 
 <candidate_self_description>
-${selfDescription}
+ ${selfDescription}
 </candidate_self_description>
 
 <job_description_to_apply_for>
-${jobDescription}
+ ${jobDescription}
 </job_description_to_apply_for>
 
 STRICT EVALUATION RULES:
@@ -140,5 +149,6 @@ STRICT EVALUATION RULES:
         throw error;
     }
 }
+
 
 module.exports = generateInterviewReport;

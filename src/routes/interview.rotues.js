@@ -12,7 +12,28 @@ const interviewRouter = express.Router();
  */
 
 interviewRouter.post("/",authMiddleware.authuser,upload.single('resume'),interviewController.generateInterviewReportController); 
+/**
+ * @route GET /api/interview/:interviewId
+ * @desc Get the interview report by its ID.
+ * @access private
+ */
+interviewRouter.get("/:interviewId",authMiddleware.authuser,interviewController.getInterviewReportByIdController);
+ 
+/**
+ * @route GET /api/interview
+ * @desc Get all interview reports for the authenticated user.  
+ * @access private
+ */
+interviewRouter.get("/",authMiddleware.authuser,interviewController.getAllInterviewReportByIdController);
 
+// === DELETE REPORT - START (delete these blocks to remove the feature) ===
+/**
+ * @route DELETE /api/interview/:interviewId
+ * @desc Delete an interview report owned by the authenticated user.
+ * @access private
+ */
+interviewRouter.delete("/:interviewId", authMiddleware.authuser, interviewController.deleteInterviewReportController);
+// === DELETE REPORT - END ===
 
 
 module.exports = interviewRouter;
