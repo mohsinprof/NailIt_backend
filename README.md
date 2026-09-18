@@ -2,7 +2,7 @@
 
 Node.js + Express REST API for an AI-powered interview preparation platform.
 Parses resumes, calls Google Gemini to generate interview reports and resume
-content, and renders PDFs on demand. Pairs with the frontend repo (`genai_frontend`).
+content, and renders PDFs on demand. Pairs with the frontend repo (`NailIt_frontend`).
 
 ## Features
 

@@ -25,12 +25,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mohsinprof/genai_backend.git"
+    "url": "git+https://github.com/mohsinprof/NailIt_backend.git"
   },
   "bugs": {
-    "url": "https://github.com/mohsinprof/genai_backend/issues"
+    "url": "https://github.com/mohsinprof/NailIt_backend/issues"
   },
-  "homepage": "https://github.com/mohsinprof/genai_backend#readme",
+  "homepage": "https://github.com/mohsinprof/NailIt_backend#readme",
   "devDependencies": {
     "nodemon": "^3.1.14"
   }
