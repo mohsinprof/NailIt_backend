@@ -198,7 +198,7 @@ async function generateTailoredResumePdf(resumeText, jobDescription, outputFileP
   const prompt = `
 You are an expert ATS-resume writer.
 Rewrite the candidate's resume so it reads like a polished, real professional resume tailored to the target job.
-Treat this as a full-capacity resume optimization pass: be thorough, dense, specific, and strictly professional.
+Treat this as a full-capacity resume optimization pass:  be thorough, dense, specific, and strictly professional.
 
 Rules:
 - Produce a substantial result, not a short summary.
