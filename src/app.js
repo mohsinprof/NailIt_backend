@@ -13,7 +13,7 @@ app.use(cookiePArser());
 
 // FIX: Allow all origins so your Vercel frontend can talk to it
 app.use(cors({
-    origin: true,
+     origin: "http://localhost:5173",
     credentials: true
 }))
 
