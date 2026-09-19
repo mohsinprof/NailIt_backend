@@ -1,0 +1,23 @@
+name: Deploy Backend to Oracle
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Execute SSH commands to deploy
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.ORACLE_HOST }}
+          username: ubuntu
+          key: ${{ secrets.ORACLE_SSH_KEY }}
+          script: |
+            cd ~/NailIt_backend
+            git pull origin main
+            npm install
+            pm2 restart nailit-backend
